@@ -1,0 +1,43 @@
+﻿<Window x:Class="EmployeeManagement.Views.EmployeesView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:EmployeeManagement.Views"
+        xmlns:vm="clr-namespace:EmployeeManagement.ViewModels"
+        mc:Ignorable="d"
+        Title="EmployeesView" Height="450" Width="800">
+    <Window.DataContext>
+        <vm:EmployeesViewModel></vm:EmployeesViewModel>
+    </Window.DataContext>
+    <Grid>
+        <ListView PreviewMouseDoubleClick="ListView_PreviewMouseDoubleClick" ItemsSource="{Binding Employees, UpdateSourceTrigger=PropertyChanged}" Margin="0,33,0,42">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn DisplayMemberBinding="{Binding LastName}" Width="150">
+                        <GridViewColumnHeader Content="Фамилия"/>
+                    </GridViewColumn>
+                    <GridViewColumn DisplayMemberBinding="{Binding FirstName}"  Width="100">
+                        <GridViewColumnHeader Content="Имя"/>
+                    </GridViewColumn>
+                    <GridViewColumn DisplayMemberBinding="{Binding Age}"  Width="100">
+                        <GridViewColumnHeader Content="Возраст" />
+                    </GridViewColumn>
+                    <GridViewColumn DisplayMemberBinding="{Binding CompanyName}"  Width="100">
+                        <GridViewColumnHeader Content="Место работы"/>
+                    </GridViewColumn>
+                    <GridViewColumn DisplayMemberBinding="{Binding Position}"  Width="150">
+                        <GridViewColumnHeader Content="Должность"/>
+                    </GridViewColumn>
+                    <GridViewColumn DisplayMemberBinding="{Binding CityName}"  Width="100">
+                        <GridViewColumnHeader Content="Город"/>
+                    </GridViewColumn>
+                </GridView>
+            </ListView.View>
+        </ListView>
+        <Button Content="Добавить" HorizontalAlignment="Left" Margin="400,392,0,0" VerticalAlignment="Top" Height="42" Width="400"/>
+        <TextBox HorizontalAlignment="Left" Margin="10,10,0,0" TextWrapping="Wrap" Text="{Binding Filter, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Width="120"/>
+        <TextBlock HorizontalAlignment="Left" Margin="135,11,0,0" TextWrapping="Wrap" Text="Введите фамилию" VerticalAlignment="Top" Width="163"/>
+
+    </Grid>
+</Window>
