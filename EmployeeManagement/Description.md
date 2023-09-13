@@ -12,3 +12,9 @@
     Указывает на коллекцию, содержащую все объекты, которые будут показаны в списке;
 - UpdateSourceTrigger (для двусторонней привязки)
 	Обновление привязки. PropertyChanged: источник привязки обновляется сразу после обновления свойства в приемнике
+
+- при внедрении DI необходимо провести корректировку: 
+-- реализовать нужные интерфейсы;
+-- в App.xaml удалить строку запуска нужного окна (StartupUri="Views/EmployeesView.xaml"), а так же удалить из "EmployeesView.xaml" <Window.DataContext><vm:EmployeesViewModel></vm:EmployeesViewModel></Window.DataContext>.
+-- в App.xaml.cs прописать для корректной работы подключение наших репозиториев с помощью пакета Unit.Container;
+-- в нужном для запуска окне (в данном случае EmployeesView.xaml.cs) прописать DI через конструктор значение DataContext;

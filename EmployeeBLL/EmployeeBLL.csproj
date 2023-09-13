@@ -1,0 +1,15 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net7.0-windows</TargetFramework>
+    <Nullable>enable</Nullable>
+    <UseWPF>true</UseWPF>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Reference Include="RandomPerson">
+      <HintPath>..\..\..\..\RandomHuman\RandomPreson\RandomPreson\bin\Release\net7.0\RandomPerson.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
+</Project>

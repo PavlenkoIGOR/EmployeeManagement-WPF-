@@ -22,10 +22,10 @@ namespace EmployeeManagement.Views
     /// </summary>
     public partial class EmployeesView : Window
     {
-        public EmployeesView()
+        public EmployeesView(IEmployeesViewModel employeesViewModel)
         {
             InitializeComponent();
-            //ShowQ();
+            DataContext = employeesViewModel;
         }
 
         private void ListView_PreviewMouseDoubleClick(object sender, MouseButtonEventArgs e)
