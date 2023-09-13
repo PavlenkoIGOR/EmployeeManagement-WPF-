@@ -24,6 +24,7 @@ namespace EmployeeManagement.ViewModels
         {
             _employeeRepository = new EmployeeRepository();
             FillListView();
+            TextBlockResult();
         }
 
         private string _filter; //данные из TextBox
@@ -37,12 +38,13 @@ namespace EmployeeManagement.ViewModels
             {
                 _filter = value;
                 FillListView();
+                TextBlockResult();
             }
         }
 
         private ObservableCollection<Employee> _employees; //По функциональности коллекция ObservableCollection похожа на список List за тем
         //исключением, что позволяет известить внешние объекты о том, что коллекция была изменена (через делегат NotifyCollectionChangedEventHandler).
-        public ObservableCollection<Employee> Employees
+        public ObservableCollection<Employee> EmployeesObserve
         {
             get 
             {
@@ -55,7 +57,7 @@ namespace EmployeeManagement.ViewModels
             }
         }
 
-        int countItems = default;
+        public int countItems = default;
 
         ///<summary>
         ///Метод, который будет заполнять данными ListView
@@ -64,15 +66,41 @@ namespace EmployeeManagement.ViewModels
         {
             if (!String.IsNullOrEmpty(_filter))
             {
-                Employees = new ObservableCollection<Employee>(_employeeRepository.GetAll().Where(v => v.LastName.Contains(_filter))); //если фильтр не пустой, мы получаем всех сотрудников из репозитория, а затем производим фильтрацию данных сотрудника при помощи Linq.
-                countItems = Employees.Count();
+                EmployeesObserve = new ObservableCollection<Employee>(_employeeRepository.GetAll().Where(v => v.LastName.Contains(_filter))); //если фильтр не пустой, мы получаем всех сотрудников из репозитория, а затем производим фильтрацию данных сотрудника при помощи Linq.
+                countItems = EmployeesObserve.Count();
             }
             else
             {
-                Employees = new ObservableCollection<Employee>(_employeeRepository.GetAll());//если фильтр пустой, то мы получаем всех сотрудников из репозитория;
+                EmployeesObserve = new ObservableCollection<Employee>(_employeeRepository.GetAll());//если фильтр пустой, то мы получаем всех сотрудников из репозитория;
             }
         }
 
+        #region Блок для вывода информации в TextBlock1
+        private string _textBlock1;
+        public string TextBlock1 
+        {
+            get
+            {
+                return _textBlock1;
+            }
+            set
+            {
+                _textBlock1 = value;
+                OnPropertyChanged();
+            }
+        }
+        public void TextBlockResult()
+        {
 
+            if (String.IsNullOrEmpty(Filter))
+            {
+                TextBlock1 = "<-Введите данные для поиска";
+            }
+            else
+            {
+                TextBlock1 = $"По вашему запросу найдено {EmployeesObserve.Count()} человек.";
+            }
+        }
+        #endregion
     }
 }

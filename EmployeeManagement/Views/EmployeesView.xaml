@@ -11,7 +11,7 @@
         <vm:EmployeesViewModel></vm:EmployeesViewModel>
     </Window.DataContext>
     <Grid>
-        <ListView PreviewMouseDoubleClick="ListView_PreviewMouseDoubleClick" ItemsSource="{Binding Employees, UpdateSourceTrigger=PropertyChanged}" Margin="0,33,0,42">
+        <ListView PreviewMouseDoubleClick="ListView_PreviewMouseDoubleClick" ItemsSource="{Binding EmployeesObserve, UpdateSourceTrigger=PropertyChanged}" Margin="0,33,0,42">
             <ListView.View>
                 <GridView>
                     <GridViewColumn DisplayMemberBinding="{Binding LastName}" Width="150">
@@ -36,8 +36,8 @@
             </ListView.View>
         </ListView>
         <Button Content="Добавить" HorizontalAlignment="Left" Margin="400,392,0,0" VerticalAlignment="Top" Height="42" Width="400"/>
-        <TextBox HorizontalAlignment="Left" Margin="10,10,0,0" TextWrapping="Wrap" Text="{Binding Filter, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Width="120"/>
-        <TextBlock HorizontalAlignment="Left" Margin="135,11,0,0" TextWrapping="Wrap" Text="Введите фамилию" VerticalAlignment="Top" Width="163"/>
+        <TextBox  HorizontalAlignment="Left" Margin="10,10,0,0" TextWrapping="Wrap" Text="{Binding Filter, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Width="120"/>
+        <TextBlock Name="TextBlock1" HorizontalAlignment="Left" Margin="135,11,0,0" TextWrapping="Wrap" Text="{Binding TextBlock1, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Width="265"/>
 
     </Grid>
 </Window>
