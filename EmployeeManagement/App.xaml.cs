@@ -1,5 +1,6 @@
 ﻿//using EmployeeBLL.Models;
 //using EmployeeBLL.ViewModels;
+using EmployeeBLL.ViewModels;
 using EmployeeManagement.Models;
 using EmployeeManagement.ViewModels;
 using EmployeeManagement.Views;
@@ -26,6 +27,7 @@ namespace EmployeeManagement
             container.RegisterType<IEmployeeRepository, EmployeeRepository>(); //добавление в container наши репозиториев
             container.RegisterType<IEmployeesViewModel, EmployeesViewModel>(); //добавление в container наши репозиториев
             container.RegisterType<ILogger, Logger>(); //добавление в container наши репозиториев
+            container.RegisterType<IOneEmployeeViewModel, OneEmployeeViewModel>();
 
             container.Resolve<EmployeesView>().Show(); //запуск вручную нужной нам вьюшки и после такого запуска из App.xaml 
                                                        //удалить строку запуска нужного окна (StartupUri="Views/EmployeesView.xaml"), а так же удалить из

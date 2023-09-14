@@ -1,4 +1,5 @@
-﻿using EmployeeManagement.Models;
+﻿using EmployeeBLL.ViewModels;
+using EmployeeManagement.Models;
 using EmployeeManagement.ViewModels;
 using System;
 using System.Collections.Generic;
@@ -22,10 +23,14 @@ namespace EmployeeManagement.Views
     /// </summary>
     public partial class EmployeesView : Window
     {
-        public EmployeesView(IEmployeesViewModel employeesViewModel)
+        IEmployeesViewModel _viewModel;
+        IOneEmployeeViewModel _oneEmployeeViewModel;
+        public EmployeesView(IEmployeesViewModel employeesViewModel, IOneEmployeeViewModel oneEmployeeViewModel)
         {
+            _viewModel = employeesViewModel;
+            _oneEmployeeViewModel = oneEmployeeViewModel;
             InitializeComponent();
-            DataContext = employeesViewModel;
+            DataContext = _viewModel;
         }
 
         private void ListView_PreviewMouseDoubleClick(object sender, MouseButtonEventArgs e)
@@ -35,8 +40,13 @@ namespace EmployeeManagement.Views
             {
                 return;
             }
-            var employee = item as Employee;//в противном случае отобразится сообщение с информацией о сотруднике.
-            MessageBox.Show($"{employee.FirstName} {employee.LastName} {employee.Age} лет {Environment.NewLine} Место работы: {employee.CompanyName}{Environment.NewLine}Должность: {employee.Position}{Environment.NewLine}Город: {employee.CityName}");
+            Employee employee = item as Employee;//в противном случае отобразится сообщение с информацией о сотруднике.
+            
+            //MessageBox.Show($"{employee.FirstName} {employee.LastName} {employee.Age} лет {Environment.NewLine} Место работы: {employee.CompanyName}{Environment.NewLine}Должность: {employee.Position}{Environment.NewLine}Город: {employee.CityName}");
+            //далее метод запуска окошка с данными пользователями вместо обычного Message.Sho():
+            _oneEmployeeViewModel.Employee = employee;
+            OneEmployeeView oneEmployee = new OneEmployeeView(_oneEmployeeViewModel);
+            oneEmployee.Show();
         }
         private void ShowQ()
         {

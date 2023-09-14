@@ -16,5 +16,5 @@
 - при внедрении DI необходимо провести корректировку: 
 -- реализовать нужные интерфейсы;
 -- в App.xaml удалить строку запуска нужного окна (StartupUri="Views/EmployeesView.xaml"), а так же удалить из "EmployeesView.xaml" <Window.DataContext><vm:EmployeesViewModel></vm:EmployeesViewModel></Window.DataContext>.
--- в App.xaml.cs прописать для корректной работы подключение наших репозиториев с помощью пакета Unit.Container;
+-- в App.xaml.cs прописать для корректной работы подключение наших репозиториев с помощью пакета Unit.Container: IUnityContainer container = new UnityContainer();
 -- в нужном для запуска окне (в данном случае EmployeesView.xaml.cs) прописать DI через конструктор значение DataContext;
